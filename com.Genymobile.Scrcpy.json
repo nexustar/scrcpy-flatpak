@@ -1,0 +1,80 @@
+{
+    "app-id": "com.Genymobile.Scrcpy",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "scrcpy",
+    "modules": [
+        {
+            "name": "scrcpy",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D adb /app/bin/adb",
+                "install -D scrcpy-server.jar /app/bin/scrcpy-server.jar",
+                "meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=scrcpy-server.jar",
+                "ninja -C x",
+                "install -D x/app/scrcpy /app/bin/scrcpy"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "scrcpy.zip"
+                },
+                {
+                    "type": "file",
+                    "path": "scrcpy-server.jar"
+                },
+                {
+                    "type": "file",
+                    "path": "adb"
+                }
+            ]
+        },
+        {
+            "name": "x264",
+                "config-opts": [
+                "--enable-pic",
+                "--enable-shared"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://download.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-20190319-2245-stable.tar.bz2",
+                    "sha256": "9c8b6aa2a031473a3cdb6d0b7924d28d1c9a054981ac9f23d7113d8fb7cd09c9"
+                }
+            ]
+        },
+        {
+            "name": "ffmpeg",
+            "config-opts": [
+            "--enable-pic",
+            "--enable-shared",
+            "--disable-doc",
+            "--disable-static",
+            "--enable-gpl",
+            "--enable-libx264",
+            "--enable-libvpx",
+            "--enable-libmp3lame",
+            "--enable-libvorbis",
+            "--enable-libopus"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "file:///home/uu/Downloads/ffmpeg-4.1.1.tar.xz",
+                    "sha256": "373749824dfd334d84e55dff406729edfd1606575ee44dd485d97d45ea4d2d86"
+                }
+            ]
+        }
+    ],
+    "finish-args": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--device=all",
+        "--filesystem=home",
+        "--env=SCRCPY_SERVER_PATH=/app/bin/scrcpy-server.jar"
+        ]
+}
+
