@@ -45,7 +45,12 @@
         },
         {
             "name": "ffmpeg",
-            "config-opts": "--enable-decoder=h264",
+            "config-opts": [
+                "--enable-decoder=h264",
+                "--enable-shared",
+                "--disable-doc",
+                "--disable-static"
+            ],
             "sources": [
                 {
                     "type": "archive",
