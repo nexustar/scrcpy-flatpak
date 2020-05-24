@@ -11,11 +11,8 @@ $ flatpak install scrcpy.flatpak
 ### install dependencies
 ```
 $ sudo apt install flatpak-builder
-$ flatpak install flathub org.freedesktop.Platform//18.08 org.freedesktop.Sdk//18.08
+$ flatpak install flathub org.freedesktop.Platform//19.08 org.freedesktop.Sdk//19.08
 ```
-### Download files
-
-adb file from https://developer.android.com/studio/releases/platform-tools : adb
 
 ### Build
 ```

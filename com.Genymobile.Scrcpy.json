@@ -1,16 +1,26 @@
 {
     "app-id": "com.Genymobile.Scrcpy",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "18.08",
+    "runtime-version": "19.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "scrcpy",
+    "add-extensions": {
+        "org.freedesktop.Platform.ffmpeg-full": {
+            "directory": "lib/ffmpeg",
+            "version": "19.08",
+            "add-ld-path": "."
+        }
+    },
+    "cleanup-commands": [
+        "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
+    ],
     "modules": [
         {
             "name": "scrcpy",
             "buildsystem": "simple",
             "build-commands": [
-                "install -D scrcpy-server-v1.10.jar /app/bin/scrcpy-server.jar",
-                "meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=/app/bin/scrcpy-server.jar",
+                "install -D scrcpy-server-v1.13 /app/share/scrcpy-server.jar",
+                "meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=/app/share/scrcpy-server.jar",
                 "ninja -C x",
                 "install -D x/app/scrcpy /app/bin/scrcpy"
             ],
@@ -18,13 +28,13 @@
                 {
                     "type": "git",
                     "url": "https://github.com/Genymobile/scrcpy.git",
-                    "branch": "release",
-                    "commit": "9bcee4ea428472c884fc869a42e0d667c5958b4b"
+                    "tag": "v1.13",
+                    "commit": "9babe268050cd8a791364e5edb346c3c15a6e575"
                 },
                 {
                     "type": "file",
-                    "url": "https://github.com/Genymobile/scrcpy/releases/download/v1.10/scrcpy-server-v1.10.jar",
-                    "sha256": "cbeb1a4e046f1392c1dc73c3ccffd7f86dec4636b505556ea20929687a119390"
+                    "url": "https://github.com/Genymobile/scrcpy/releases/download/v1.13/scrcpy-server-v1.13",
+                    "sha256": "5fee64ca1ccdc2f38550f31f5353c66de3de30c2e929a964e30fa2d005d5f885"
                 }
             ]
         },
@@ -38,24 +48,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://dl.google.com/android/repository/platform-tools_r29.0.2-linux.zip",
-                    "sha256": "633b6dfa245f5dc58d15da9ead655bcd14de5784196ec0f0dc7e37a5acb61be4"
-                }
-            ]
-        },
-        {
-            "name": "ffmpeg",
-            "config-opts": [
-                "--enable-decoder=h264",
-                "--enable-shared",
-                "--disable-doc",
-                "--disable-static"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-4.2.tar.bz2",
-                    "sha256": "306bde5f411e9ee04352d1d3de41bd3de986e42e2af2a4c44052dce1ada26fb8"
+                    "url": "https://dl.google.com/android/repository/platform-tools_r30.0.1-linux.zip",
+                    "sha256": "b30ee914045fe52b50f058d66baa10205500ea410f71457aec04b70ceb14da8b"
                 }
             ]
         }
@@ -67,7 +61,7 @@
         "--socket=wayland",
         "--device=all",
         "--filesystem=home",
-        "--env=SCRCPY_SERVER_PATH=/app/bin/scrcpy-server.jar"
+        "--env=SCRCPY_SERVER_PATH=/app/share/scrcpy-server.jar"
         ]
 }
 
