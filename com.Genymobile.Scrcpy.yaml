@@ -1,0 +1,50 @@
+---
+app-id: com.Genymobile.Scrcpy
+runtime: org.freedesktop.Platform
+runtime-version: "21.08"
+sdk: org.freedesktop.Sdk
+command: scrcpy
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    version: "21.08"
+    add-ld-path: .
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+modules:
+  - name: scrcpy
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/Genymobile/scrcpy.git
+        tag: v1.20
+        commit: a045e28df83711ea5ea10d8dc9f8dfaf781a022a
+      - type: file
+        url: https://github.com/Genymobile/scrcpy/releases/download/v1.20/scrcpy-server-v1.20
+        sha256: b20aee4951f99b060c4a44000ba94de973f9604758ef62beb253b371aad3df34
+      #- type: git
+      #  url: https://github.com/libusb/libusb.git
+      #  tag: v1.0.24
+      #  commit: c6a35c56016ea2ab2f19115d2ea1e85e0edae155
+    build-commands:
+      - install -D scrcpy-server-v1.20 /app/share/scrcpy-server.jar
+      - meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=/app/share/scrcpy-server.jar
+      - ninja -C x
+      - install -D x/app/scrcpy /app/bin/scrcpy
+  - name: adb
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
+        sha256: e6cb61b92b5669ed6fd9645fad836d8f888321cd3098b75588a54679c204b7dc
+    build-commands:
+      - install -D adb /app/bin/adb
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=all
+  - --filesystem=home
+  - --env=SCRCPY_SERVER_PATH=/app/share/scrcpy-server.jar
+...
