@@ -8,6 +8,9 @@
     <p>Access Android 12 devices using scrcpy.</p>
   </description>
   <releases>
+    <release version="v1.24" date="2022-04-29">
+      <description>See https://github.com/Genymobile/scrcpy/releases/tag/v1.24 for more information.</description>
+    </release>
     <release version="v1.19" date="2021-09-10">
       <description>See https://github.com/Genymobile/scrcpy/releases/tag/v1.19 for more information.</description>
     </release>
