@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Attempting to update to ADB v33.0.1 and scrcpy v1.24.
+## [v1.24] - 2022-05-24
+
+- Updated ADB v33.0.1 and scrcpy v1.24 with libusb added.
 
 ## [v1.19] - 2021-11-28
 
