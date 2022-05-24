@@ -17,13 +17,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/Genymobile/scrcpy.git
-        tag: v1.19
-        commit: 228e2c15f44849032e9006dce1e0c47ae6e108ee
+        tag: v1.24
+        commit: ef13d394fd83a2c534d86f2dbc188f4324a6ee34
       - type: file
-        url: https://github.com/Genymobile/scrcpy/releases/download/v1.19/scrcpy-server-v1.19
-        sha256: 876f9322182e6aac6a58db1334f4225855ef3a17eaebc80aab6601d9d1ecb867
+        url: https://github.com/Genymobile/scrcpy/releases/download/v1.24/scrcpy-server-v1.24
+        sha256: ae74a81ea79c0dc7250e586627c278c0a9a8c5de46c9fb5c38c167fb1a36f056
     build-commands:
-      - install -D scrcpy-server-v1.19 /app/share/scrcpy-server.jar
+      - install -D scrcpy-server-v1.24 /app/share/scrcpy-server.jar
       - meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=/app/share/scrcpy-server.jar
       - ninja -C x
       - install -D x/app/scrcpy /app/bin/scrcpy
@@ -31,8 +31,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
-        sha256: e6cb61b92b5669ed6fd9645fad836d8f888321cd3098b75588a54679c204b7dc
+        url: https://dl.google.com/android/repository/platform-tools_r33.0.1-linux.zip
+        sha256: a339548918c3ab31c4d88416c21cee753bd942040540216c06e640f4b6db3ae2
     build-commands:
       - install -D adb /app/bin/adb
 finish-args:
