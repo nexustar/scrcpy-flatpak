@@ -14,3 +14,6 @@ run:
 uninstall:
 	flatpak uninstall com.Genymobile.Scrcpy --assumeyes
 	flatpak --user remote-delete tutorial-repo --force
+
+package:
+	flatpak build-bundle repo com.Genymobile.Scrcpy.flatpak com.Genymobile.Scrcpy

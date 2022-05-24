@@ -9,9 +9,26 @@ add-extensions:
     directory: lib/ffmpeg
     version: "21.08"
     add-ld-path: .
+
 cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+
 modules:
+  - name: libusb
+    config-opts:
+      - "--disable-static"
+      - "--disable-udev"
+    cleanup:
+      - "/lib/*.la"
+      - "/lib/pkgconfig"
+      - "/include"
+    sources:
+      - type: archive
+        url: https://github.com/libusb/libusb/archive/v1.0.22.tar.gz
+        sha256: 3500f7b182750cd9ccf9be8b1df998f83df56a39ab264976bdb3307773e16f48
+    post-install:
+      - "install -Dm644 COPYING /app/share/licenses/libusb/COPYING"
+
   - name: scrcpy
     buildsystem: simple
     sources:
@@ -27,6 +44,7 @@ modules:
       - meson x --buildtype release --strip -Db_lto=true -Dprebuilt_server=/app/share/scrcpy-server.jar
       - ninja -C x
       - install -D x/app/scrcpy /app/bin/scrcpy
+
   - name: adb
     buildsystem: simple
     sources:
@@ -35,6 +53,7 @@ modules:
         sha256: a339548918c3ab31c4d88416c21cee753bd942040540216c06e640f4b6db3ae2
     build-commands:
       - install -D adb /app/bin/adb
+
 finish-args:
   - --share=network
   - --share=ipc

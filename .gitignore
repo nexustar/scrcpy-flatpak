@@ -1,6 +1,9 @@
 .flatpak-builder/
 test/
 repo/
+tags.temp
+tags.lock
+*.flatpak
 
 ## Vim Files
 # Swap
