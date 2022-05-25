@@ -17,3 +17,6 @@ uninstall:
 
 package:
 	flatpak build-bundle repo com.Genymobile.Scrcpy.flatpak com.Genymobile.Scrcpy
+
+clean:
+	rm -rf repo tags.lock tags.temp test tags com.Genymobile.Scrcpy.flatpak

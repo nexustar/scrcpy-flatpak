@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=scrcpy
+GenericName=Screen Copy
+Comment=Genymobile scrcpy - Screen Copy
+Exec=scrcpy
+Icon=com.Genymobile.Scrcpy
+Terminal=false
+Type=Application
+Categories=Development;

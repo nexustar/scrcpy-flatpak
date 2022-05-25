@@ -54,6 +54,19 @@ modules:
     build-commands:
       - install -D adb /app/bin/adb
 
+  - name: desktop-files
+    buildsystem: simple
+    sources:
+      - type: file
+        path: com.Genymobile.Scrcpy.256px.png
+      - type: file
+        path: com.Genymobile.Scrcpy.desktop
+    build-commands:
+      - install -m 644 -D com.Genymobile.Scrcpy.256px.png /app/share/icons/hicolor/256x256/apps/com.Genymobile.Scrcpy.png
+      - rm -f com.Genymobile.Scrcpy.256px.png
+      - install -m 644 -D com.Genymobile.Scrcpy.desktop /app/share/applications/com.Genymobile.Scrcpy.desktop
+      - rm -f com.Genymobile.Scrcpy.desktop
+
 finish-args:
   - --share=network
   - --share=ipc
