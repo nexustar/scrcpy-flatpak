@@ -41,32 +41,30 @@ flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flath
 
 ## Build Steps
 
-### install perbuilt
-```
-$ flatpak install scrcpy.flatpak
-```
-
 ### How to build and install it
 
 #### install dependencies
-```
-$ sudo apt install flatpak-builder
-$ flatpak install flathub org.freedesktop.Platform//19.08 org.freedesktop.Sdk//19.08
+
+```bash
+sudo apt install flatpak-builder
+flatpak --user install flathub org.freedesktop.Platform//21.08 org.freedesktop.Sdk//21.08
 ```
 
 #### Build
-```
-$ mkdir test
-$ flatpak-builder test com.Genymobile.Scrcpy.json --force-clean
-$ flatpak-builder --repo=repo --force-clean test com.Genymobile.Scrcpy.json
+
+```bash
+make build
 ```
 #### Install
-```
-$ flatpak --user remote-add --no-gpg-verify tutorial-repo repo
-$ flatpak --user install tutorial-repo com.Genymobile.Scrcpy
+
+```bash
+make install
 ```
 
 ### Run
+
+```bash
+make run
 ```
-$ flatpak run com.Genymobile.Scrcpy
-```
+
+The `scrcpy` application should also be available from the application launcher.
