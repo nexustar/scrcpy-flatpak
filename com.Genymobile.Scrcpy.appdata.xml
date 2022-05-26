@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.Genymobile.Scrcpy</id>
+  <developer_name>Genymobile</developer_name>
+  <name>scrcpy</name>
+  <summary>Display and control your Android device</summary>
+  <description>
+    <p>Access Android 12 devices using scrcpy.</p>
+  </description>
+  <releases>
+    <release version="v1.24" date="2022-04-29">
+      <description>See https://github.com/Genymobile/scrcpy/releases/tag/v1.24 for more information.</description>
+    </release>
+    <release version="v1.19" date="2021-09-10">
+      <description>See https://github.com/Genymobile/scrcpy/releases/tag/v1.19 for more information.</description>
+    </release>
+  </releases>
+  <categories>
+    <catagory>Development</catagory>
+  </categories>
+  <url type="homepage">https://github.com/Genymobile/scrcpy</url>
+  <metadata_license>apache-2.0</metadata_license>
+  <content_rating type="oars-1.0"/>
+</component>
