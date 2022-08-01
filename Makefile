@@ -2,7 +2,7 @@
 
 all: com.Genymobile.Scrcpy.flatpak
 
-build:
+build: com.Genymobile.Scrcpy.yaml
 	flatpak-builder test com.Genymobile.Scrcpy.yaml --force-clean
 	flatpak-builder --repo=repo --force-clean test com.Genymobile.Scrcpy.yaml
 
