@@ -1,7 +1,8 @@
 .PHONY: build install run uninstall
 
-build:
-	flatpak-builder test com.Genymobile.Scrcpy.yaml --force-clean
+all: com.Genymobile.Scrcpy.flatpak
+
+build: com.Genymobile.Scrcpy.yaml
 	flatpak-builder --repo=repo --force-clean test com.Genymobile.Scrcpy.yaml
 
 test-install:
@@ -15,10 +16,10 @@ uninstall:
 	flatpak uninstall com.Genymobile.Scrcpy --assumeyes --delete-data
 	flatpak --user remote-delete tutorial-repo --force
 
-package:
+com.Genymobile.Scrcpy.flatpak: build
 	flatpak build-bundle repo com.Genymobile.Scrcpy.flatpak com.Genymobile.Scrcpy
 
-install: package
+install: com.Genymobile.Scrcpy.flatpak
 	flatpak --user install com.Genymobile.Scrcpy.flatpak --assumeyes
 
 clean:
